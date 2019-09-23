@@ -9,5 +9,5 @@ If you decide to just stick to what is automatically generated, then merely runn
 in the desired directory will look like this:
 	./gofile
 
-# This is part of a larger contribution to a containerized vim set up with STD and my current .vimrc
+This is part of a larger contribution to a containerized vim set up with STD and my current .vimrc
 # Coming soon...
