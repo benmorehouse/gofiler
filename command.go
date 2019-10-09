@@ -4,7 +4,6 @@ import(
 	"os"
 	"fmt"
 	"bufio"
-	"strings"
 	"flag"
 	"io/ioutil"
 )
@@ -33,14 +32,13 @@ func goFiler()(error){
 	if *dirName ==""{
 		getDirName(dirName)
 	}
-	fmt.Println(*dirName)
-	return err
 
 	err := os.Mkdir(*dirName,os.ModePerm)
 
 	if err != nil{
 		return err
 	}
+	return nil
 
 	err = os.Chdir(*dirName)
 
@@ -66,12 +64,9 @@ func goFiler()(error){
 
 func getDirName(dirName *string){
 	fmt.Print("Please enter new directory name:")
-	for *dirName ==""{
-		reader := bufio.NewReader(os.Stdin)
-		text , _ := reader.ReadString('\n')
-		*dirName = string(text)
-		*dirName = strings.ReplaceAll(" ","",*dirName)
-	}
+	reader := bufio.NewReader(os.Stdin)
+	text , _ := reader.ReadString('\n')
+	*dirName = string(text)
 	return
 }
 
