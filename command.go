@@ -6,6 +6,7 @@ import(
 	"bufio"
 	"flag"
 	"io/ioutil"
+	"strings"
 )
 /*
 	Want to make it where they can make a github repo with it, but it needs to make sure that its not nested!
@@ -38,7 +39,6 @@ func goFiler()(error){
 	if err != nil{
 		return err
 	}
-	return nil
 
 	err = os.Chdir(*dirName)
 
@@ -48,6 +48,7 @@ func goFiler()(error){
 	// gets file data from customizer into array
 	newFiles, err := getFileData()
 
+	return nil
 	if err != nil{
 		return err
 	}
@@ -66,12 +67,13 @@ func getDirName(dirName *string){
 	fmt.Print("Please enter new directory name:")
 	reader := bufio.NewReader(os.Stdin)
 	text , _ := reader.ReadString('\n')
-	*dirName = string(text)
+	*dirName = strings.TrimSpace(string(text))
 	return
 }
 
 /*
 This function reads through customizer and assigns name and content to new files 
+need to figure out how to get the data to the newfile from the old one
 */
 
 func getFileData()([]newFile,error){
@@ -82,7 +84,7 @@ func getFileData()([]newFile,error){
 		return array, err
 	}
 
-	file , err := os.Open(curDir)
+	file , err := os.Open()
 
 	if err != nil{
 		return array, err
